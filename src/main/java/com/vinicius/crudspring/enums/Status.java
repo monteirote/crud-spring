@@ -1,13 +1,13 @@
 package com.vinicius.crudspring.enums;
 
-public enum Category {
+public enum Status {
 
-    FRONT_END("Front-end"), BACK_END("Back-end");
+    ATIVO("Ativo"), INATIVO("Inativo");
 
     private String value;
 
-    private Category(String category) {
-        this.value = category;
+    private Status(String value) {
+        this.value = value;
     }
 
     public String getValue() {
@@ -18,4 +18,5 @@ public enum Category {
     public String toString() {
         return value;
     }
+    
 }

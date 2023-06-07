@@ -6,11 +6,12 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vinicius.crudspring.enums.Category;
+import com.vinicius.crudspring.enums.Status;
+import com.vinicius.crudspring.enums.converters.CategoryConverter;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,17 +38,14 @@ public class Course {
     private String name;
 
     @NotNull
-    @Length(max = 10)
-    // @Pattern(regexp =   "Back-end|Front-end")
     @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = CategoryConverter.class)
     private Category category;
 
     @NotNull
-    @Length(max = 10)
-    @Pattern(regexp = "Ativo|Inativo")
     @Column(length = 10, nullable = false)
-    private String status = "Ativo";
+
+    private Status status = Status.ATIVO;
 
 
 }
