@@ -5,9 +5,12 @@ import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vinicius.crudspring.enums.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,13 +38,14 @@ public class Course {
 
     @NotNull
     @Length(max = 10)
-    @Pattern(regexp =   "Back-end|Front-end")
+    // @Pattern(regexp =   "Back-end|Front-end")
     @Column(length = 10, nullable = false)
-    private String category;
+    @Enumerated(EnumType.ORDINAL)
+    private Category category;
 
     @NotNull
     @Length(max = 10)
-    @Pattern(regexp = "Ativo|I  nativo")
+    @Pattern(regexp = "Ativo|Inativo")
     @Column(length = 10, nullable = false)
     private String status = "Ativo";
 

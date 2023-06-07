@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.vinicius.crudspring.enums.Category;
 import com.vinicius.crudspring.models.Course;
 import com.vinicius.crudspring.repository.CourseRepository;
 
@@ -23,7 +24,7 @@ public class CrudSpringApplication {
 			Course c = new Course();
 
 			c.setName("Angular com Spring");
-			c.setCategory("Front-end");
+			c.setCategory(Category.FRONTEND);
 
 			courseRepository.save(c);
 		};
