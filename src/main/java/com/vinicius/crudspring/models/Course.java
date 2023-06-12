@@ -1,5 +1,8 @@
 package com.vinicius.crudspring.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
@@ -8,16 +11,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vinicius.crudspring.enums.Category;
 import com.vinicius.crudspring.enums.Status;
 import com.vinicius.crudspring.enums.converters.CategoryConverter;
+import com.vinicius.crudspring.enums.converters.StatusConverter;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -33,7 +38,7 @@ public class Course {
     
     @NotBlank
     @NotNull
-    @Length(min = 5, max = 100)
+    @Length(min = 3, max = 100)
     @Column(length = 100, nullable = false)
     private String name;
 
@@ -44,8 +49,11 @@ public class Course {
 
     @NotNull
     @Column(length = 10, nullable = false)
-    
+    @Convert(converter = StatusConverter.class)
     private Status status = Status.ATIVO;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lesson> lessons = new ArrayList<>();
 
 
 }

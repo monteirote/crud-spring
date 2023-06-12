@@ -5,7 +5,9 @@ import java.util.stream.Stream;
 import com.vinicius.crudspring.enums.Status;
 
 import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
+@Converter(autoApply = true)
 public class StatusConverter implements AttributeConverter<Status, String> {
 
     @Override
