@@ -52,7 +52,7 @@ public class Course {
     @Convert(converter = StatusConverter.class)
     private Status status = Status.ATIVO;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "course")
     private List<Lesson> lessons = new ArrayList<>();
 
 
